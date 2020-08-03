@@ -1,0 +1,85 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+.calculator-container {
+    margin: 100px auto;
+    width: 360px;
+    background-color: #0b032d;
+    padding: 5px;
+    color: #FFF;
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+}
+.formula,#display{
+  text-align: right;
+} 
+.formula{
+  min-height: 40px;
+}
+.regular,
+.wide,
+.long {
+    position: relative;
+    width: 90px;
+    height: 60px;
+    color: #FFF;
+    background: #99AEAD;
+    outline: 1px solid #000;
+    border: none;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+}
+.special{
+  width: 63px;
+}
+.wide {
+    width: 180px;
+}
+
+.long {
+    height: 120px;
+    position: absolute;
+    background-color: #1D7874;
+    bottom: 5px;
+}
+
+.regular:hover,
+.wide:hover,
+.long:hover {
+    outline: 1px solid #B8D8D8;
+    z-index: 3;
+    color: #000;
+}
+
+button:active {
+    filter: brightness(90%);
+}
+
+.operator {
+    background-color: #6D9197;
+}
+
+.clear {
+    background-color: #621940;
+    width: 144px;
+}
