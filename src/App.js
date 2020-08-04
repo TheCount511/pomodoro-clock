@@ -4,20 +4,33 @@ import './App.css'
 class App extends Component {
     constructor() {super();
         this.state = {
-            breaktime: 5,
+            breakTime: 5,
+            sessionTime:25,
             start_stop: false,
             display: "Session"
         }
     }
 
 
-    increaseTime=(value)=>{
-             this.setState({breaktime:value+1})
+    increaseTime=(value, type)=>{
+             (value<60 && this.setState({[type]:value+1}))    
         }
+    decreaseTime=(value, type)=>{
+        (value>1 && this.setState({[type]:value-1})) 
+    }
 
-
+    reset=()=>{
+        this.setState({breakTime:5, sessionTime:25, start_stop:false})
+    }
+    startTimer=()=>{
+        this.setState({start_stop:true});
+    }
+    stopTimer=()=>{
+        this.setState({start_stop:false})
+    }
     render() {
-        const {breaktime,display,start_stop} = this.state
+        const {breakTime,display,start_stop,sessionTime} = this.state;
+        const {increaseTime, decreaseTime, reset, startTimer, stopTimer} = this;
         return (
             <div className="container">
                 <div className="content">
@@ -26,18 +39,18 @@ class App extends Component {
                             <div>
                                 <div id="break-label">Break Length</div>
                                 <ul className="buttons">
-                                    <li ><i className="fas fa-arrow-up"id="break-increment" onClick={()=>this.increaseTime(breaktime)}></i>
+                                    <li ><i className="fas fa-arrow-up"id="break-increment" onClick={()=>increaseTime(breakTime, "breakTime")}></i>
                                     </li>
-                                    <li><span id="break-length">{breaktime}</span></li>
-                                    <li><i className="fas fa-arrow-down"id="break-decrement"></i></li>
+                                    <li><span id="break-length">{breakTime}</span></li>
+                                    <li><i className="fas fa-arrow-down"id="break-decrement" onClick={()=>decreaseTime(breakTime, "breakTime")}></i></li>
                                 </ul>
                             </div>
                             <div>
                                 <div id="session-label">Session Length</div>
                                 <ul className="buttons">
-                                    <li><i className="fas fa-arrow-up"id="session-increment"></i></li>
-                                    <li><span id="session-length">{25}</span></li>
-                                    <li><i className="fas fa-arrow-down"id="session-decrement"></i></li>
+                                    <li><i className="fas fa-arrow-up"id="session-increment" onClick={()=>increaseTime(sessionTime, "sessionTime")}></i></li>
+                                    <li><span id="session-length">{sessionTime}</span></li>
+                                    <li><i className="fas fa-arrow-down"id="session-decrement"  onClick={()=>decreaseTime(sessionTime, "sessionTime")}></i></li>
                                 </ul>
                             </div>
                         </div>     
@@ -46,8 +59,8 @@ class App extends Component {
                             <span id="time-left">{`25:00`}</span>
                         </div>
                         <div className="controls">
-                            {start_stop ? <i className="fas fa-pause"id="start_stop"></i> : <i className="fas fa-play"id="start_stop"></i>}
-                            <i className="fas fa-redo"id="reset"></i>
+                            {start_stop ? <i className="fas fa-pause"id="start_stop" onClick={stopTimer}></i> : <i className="fas fa-play"id="start_stop" onClick={startTimer}></i>}
+                            <i className="fas fa-redo"id="reset" onClick={reset}></i>
                         </div>
                 </div>
             </div>
