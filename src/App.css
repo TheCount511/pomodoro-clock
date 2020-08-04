@@ -1,85 +1,57 @@
-.App {
-  text-align: center;
+.container{
+  background-color: #dddfdd;
+  color: #6d6f6d;
 }
 
-.App-logo {
-  height: 40vmin;
+.content{
+max-width:650px;
+min-width: 450px;
+width:45% ;
+margin: 0 auto;
+padding: 20px;
+text-align: center;
+font-family: 'Oswald', sans-serif;
+font-size: 36px;
+}
+.content h1, #time-left{
+	font-size: 42px;
+}
+.set{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.buttons{
+	justify-content: space-between;
+	margin-top: 10px;
+	padding: 0;
+	margin: auto;
+	display: flex;
+	max-width: 120px;
+
+}
+.buttons li{
+	list-style-type: none;
+	display: inline;
+}
+ #timer-label{
+ 	font-size: 30px;	
+ }
+
+#time-left{
+	font-family: 'Orbitron', sans-serif;
 }
 
-.App-link {
-  color: #09d3ac;
+.session{
+	border: 5px solid #6d746e;
+	width: 200px ;
+	margin: 40px auto;
+	padding: 20px;
+	border-radius: 50px;
 }
-.calculator-container {
-    margin: 100px auto;
-    width: 360px;
-    background-color: #0b032d;
-    padding: 5px;
-    color: #FFF;
-    position: relative;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
-}
-.formula,#display{
-  text-align: right;
-} 
-.formula{
-  min-height: 40px;
-}
-.regular,
-.wide,
-.long {
-    position: relative;
-    width: 90px;
-    height: 60px;
-    color: #FFF;
-    background: #99AEAD;
-    outline: 1px solid #000;
-    border: none;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 20px;
-}
-.special{
-  width: 63px;
-}
-.wide {
-    width: 180px;
-}
-
-.long {
-    height: 120px;
-    position: absolute;
-    background-color: #1D7874;
-    bottom: 5px;
-}
-
-.regular:hover,
-.wide:hover,
-.long:hover {
-    outline: 1px solid #B8D8D8;
-    z-index: 3;
-    color: #000;
-}
-
-button:active {
-    filter: brightness(90%);
-}
-
-.operator {
-    background-color: #6D9197;
-}
-
-.clear {
-    background-color: #621940;
-    width: 144px;
+.controls{
+	width: 100px;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
 }
