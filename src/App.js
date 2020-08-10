@@ -10,24 +10,28 @@ class App extends Component {constructor() {super();
             start_stop: false,
             display: "Session",
             countdown: "inactive",
-            currentPosition: "",
             min:25,
             sec:0,
-            timerState: false
-            }
+            timerStyle: {color: '#6d6f6d'}  
+        }
        }
 
-    increaseTime = (value, type) => {(value < 60 && this.setState({[type]: value + 1
-        }, ()=>{ 
-        (type==="sessionTime" && this.setState({
-            min:this.state[type]})
-            )})) 
+    increaseTime = (value, type) => {
+            if(!this.state.start_stop)
+       { (value < 60 && this.setState({[type]: value + 1
+               }, ()=>{ 
+               (type==="sessionTime" && this.setState({
+                   min:this.state[type]})
+                   )})) }
     }
-    decreaseTime = (value, type) => {(value> 1 && this.setState({[type]: value - 1
-        }, ()=>{ 
-        (type==="sessionTime" && this.setState({
-            min:this.state[type]})
-            )}))
+    decreaseTime = (value, type) => {
+
+        if (!this.state.start_stop)
+        {(value> 1 && this.setState({[type]: value - 1
+                }, ()=>{ 
+                (type==="sessionTime" && this.setState({
+                    min:this.state[type]})
+                    )}))}
     }
 
     reset = () => {
@@ -48,7 +52,8 @@ class App extends Component {constructor() {super();
         sec:0, 
         start_stop: false, 
         countdown:"inactive",
-        display: "Session"
+        display: "Session",
+        timerStyle:{color:'#6d6f6d'}
         })     
         }
 
@@ -74,12 +79,18 @@ timer =(time1, time2 )=>{
     let mins = Math.floor(countdown / (60 * 1000));
     let secs = Math.floor((countdown - (mins * 60 * 1000)) / 1000);
 
+if (mins<1){
+    this.setState({
+        timerStyle: {color: 'red'}
+    })
+}
 
-       
 if (countdown < 0) {
     clearInterval(timerId)
 
-    this.setState({display: (this.state.display==="Session"?"Break":"Session"), min:time2, sec:0} , ()=>{
+    this.setState({display: (this.state.display==="Session"?"Break":"Session"), min:time2, sec:0,
+        timerStyle:{color:'#6d6f6d'}
+} , ()=>{
         
         this.timer(time2, time1);
     })
@@ -87,10 +98,10 @@ if (countdown < 0) {
 }
 else if(countdown ===0){
     this.playSound()
-    this.setState({
-        min:mins,
-        sec:secs
-    })
+    this.setState(state=>({
+            min:mins,
+            sec:secs       
+             }))
 }
 else{
 this.setState({
@@ -151,7 +162,7 @@ return (
 </div>     
 <div className="session">
     <div id="timer-label">{display}</div>
-    <span id="time-left">{`${(min<10?"0":"")+min}:${(sec<10?"0":"")+sec}`}</span>
+    <span id="time-left" style={this.state.timerStyle}>{`${(min<10?"0":"")+min}:${(sec<10?"0":"")+sec}`}</span>
 </div>
 <div className="controls">
 {start_stop ?
